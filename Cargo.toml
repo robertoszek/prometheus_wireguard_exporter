@@ -3,7 +3,7 @@ name                     = "prometheus_wireguard_exporter"
 version                  = "3.6.6"
 authors                  = ["Francesco Cogno <francesco.cogno@outlook.com>"]
 description              = "Prometheus WireGuard Exporter"
-edition                  = "2021212121212121212121212121212121212121212121"
+edition                  = "2021"
 
 readme                   = "README.md"
 license                  = "MIT"
