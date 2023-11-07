@@ -13,10 +13,7 @@ jobs:
         target:
           - id: mipsel
             name: mipsel-unknown-linux-gnu
-            args: ['-Z build-std=std']
-          - id: mips
-            name: mips-unknown-linux-gnu
-            args: []
+            args: ['-Z build-std=core,std,alloc,proc_macro']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,7 +29,7 @@ jobs:
           tool: cargo-deb
       - name: Build
         run: |
-          cross build --release --target=${{ matrix.target.name }} ${{ join(matrix.target.args, ' ') }}
+          cross build --release --target=${{ matrix.target.name }} -Z build-std=core,std,alloc,proc_macro ${{ join(matrix.target.args, ' ') }}
           cargo deb \
             --no-build \
             --no-strip \
