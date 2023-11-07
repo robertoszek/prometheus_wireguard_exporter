@@ -1,0 +1,40 @@
+name: CI Workflow
+on:
+  - push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up rust
+        uses: dtolnay/rust-toolchain@nightly
+      - name: Test
+        run: |
+          cargo test --all
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target:
+          - id: mipsel
+            name: mipsel-unknown-linux-gnu
+            args: []
+          - id: mips
+            name: mips-unknown-linux-gnu
+            args: []
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up rust
+        uses: dtolnay/rust-toolchain@nightly
+      - name: Set up cross
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cross
+      - name: Build
+        run: |
+          cross build --release --target=${{ matrix.target.name }} ${{ join(matrix.target.args, ' ') }}
