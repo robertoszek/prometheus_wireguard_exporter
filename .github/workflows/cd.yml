@@ -13,7 +13,7 @@ jobs:
         target:
           - id: mipsel
             name: mipsel-unknown-linux-gnu
-            args: []
+            args: ['-Z build-std=std']
           - id: mips
             name: mips-unknown-linux-gnu
             args: []
