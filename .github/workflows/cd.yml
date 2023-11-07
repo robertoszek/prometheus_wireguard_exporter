@@ -1,8 +1,6 @@
 name: CD Workflow
 on:
-  push:
-    tags:
-      - '*'
+  - push:
 
 jobs:
   release:
