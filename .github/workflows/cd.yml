@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up rust
-        uses: dtolnay/rust-toolchain@nightly
+        uses: dtolnay/rust-toolchain@nightly-2023-11-03
       - name: Set up cross
         uses: taiki-e/install-action@v2
         with:
@@ -27,7 +27,7 @@ jobs:
           tool: cargo-deb
       - name: Build
         run: |
-          cross build --release --target=${{ matrix.target.name }} -Z build-std=core,std,alloc,proc_macro ${{ join(matrix.target.args, ' ') }}
+          cross build --release --target=${{ matrix.target.name }} ${{ join(matrix.target.args, ' ') }}
           cargo deb \
             --no-build \
             --no-strip \
