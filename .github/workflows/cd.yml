@@ -16,7 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up rust
-        uses: dtolnay/rust-toolchain@nightly-2023-11-03
+        uses: dtolnay/rust-toolchain@master
+        toolchain: nightly-2023-11-03
       - name: Set up cross
         uses: taiki-e/install-action@v2
         with:
